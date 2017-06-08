@@ -39,11 +39,11 @@ const scroller = () => {
 
     let abort; // is scrolling aborted
 
-    let abortEv; // event that aborted scrolling
-    let abortFn = e => {
-        abortEv = e;
-        abort = true;
-    };
+    // let abortEv; // event that aborted scrolling
+    // let abortFn = e => {
+    //     abortEv = e;
+    //     abort = true;
+    // };
     let easingFn;
 
     let timeStart; // time when scrolling started
@@ -65,7 +65,7 @@ const scroller = () => {
     }
 
     function step(timestamp) {
-        if (abort) return done();
+        // if (abort) return done();
         if (!timeStart) timeStart = timestamp;
 
         timeElapsed = timestamp - timeStart;
@@ -82,8 +82,8 @@ const scroller = () => {
         if (!abort) top(container, targetY);
         timeStart = false;
 
-        _.off(container, abortEvents, abortFn);
-        if (abort && onCancel) onCancel(abortEv);
+        // _.off(container, abortEvents, abortFn);
+        // if (abort && onCancel) onCancel(abortEv);
         if (!abort && onDone) onDone();
     }
 
@@ -137,7 +137,7 @@ const scroller = () => {
 
         if (!diff) return;
 
-        _.on(container, abortEvents, abortFn);
+        // _.on(container, abortEvents, abortFn);
 
         window.requestAnimationFrame(step);
     }
